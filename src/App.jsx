@@ -285,7 +285,6 @@ function Experience() {
     'Verified UK customer business addresses as part of the 999DI verification process.',
     'Ensured data accuracy and compliance while cross-checking customer-submitted business details against internal and third-party records.',
     'Worked within strict SLA and quality benchmarks in a process-driven, high-volume back-office environment.',
-    'Developed strong attention to detail, data validation discipline, and process compliance — directly transferable to MIS reporting and data QA.',
   ]
   return (
     <section id="experience" className="py-20">
@@ -696,5 +695,5 @@ export default function App() {
       </main>
       <Footer />
     </>
-  )
+)
 }
