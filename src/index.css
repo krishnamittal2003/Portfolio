@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  --color-cream: #faf6f0;
+  --color-cream-2: #f3ede3;
+  --color-ink: #2e2a26;
+  --color-ink-soft: #5c554d;
+  --color-terracotta: #c05b3c;
+  --color-terracotta-dark: #a34a2f;
+  --color-amber-warm: #d99a3d;
+  --color-line: #e3dacc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
