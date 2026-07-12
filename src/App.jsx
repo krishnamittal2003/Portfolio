@@ -16,12 +16,37 @@ import {
   MapPin,
   Menu,
   Phone,
-  Send,
   ShieldCheck,
   Table2,
   Wrench,
   X,
 } from 'lucide-react'
+
+function Logo({ size = 38, className }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 48 48"
+      className={className}
+      aria-label="KM logo"
+    >
+      <rect width="48" height="48" fill="#c05b3c" />
+      <text
+        x="24"
+        y="33"
+        textAnchor="middle"
+        fill="#faf6f0"
+        fontFamily="'Space Grotesk', sans-serif"
+        fontSize="21"
+        fontWeight="700"
+        letterSpacing="0.5"
+      >
+        KM
+      </text>
+    </svg>
+  )
+}
 
 function Github({ size = 24, className }) {
   return (
@@ -122,8 +147,11 @@ function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-cream">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <a href="#top" className="text-lg font-bold">
-          Krishna<span className="text-terracotta">.</span>Mittal
+        <a href="#top" className="flex items-center gap-3">
+          <Logo size={38} />
+          <span className="text-lg font-bold">
+            Krishna<span className="text-terracotta">.</span>Mittal
+          </span>
         </a>
         <ul className="hidden items-center gap-7 md:flex">
           {NAV_ITEMS.map((item) => (
@@ -539,100 +567,51 @@ function Contact() {
     <section id="contact" className="py-20">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading kicker="Contact" title="Let's Talk Data" />
-        <div className="grid gap-10 lg:grid-cols-2">
-          <Reveal>
-            <form
-              action={`mailto:${LINKS.email}`}
-              method="post"
-              encType="text/plain"
-              className="space-y-5"
-            >
-              <div>
-                <label htmlFor="name" className="mb-1.5 block font-medium">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full border border-line bg-cream-2 px-4 py-3 outline-none focus:border-terracotta"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="mb-1.5 block font-medium">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="w-full border border-line bg-cream-2 px-4 py-3 outline-none focus:border-terracotta"
-                  placeholder="you@example.com"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="mb-1.5 block font-medium">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  className="w-full border border-line bg-cream-2 px-4 py-3 outline-none focus:border-terracotta"
-                  placeholder="What would you like to discuss?"
-                />
-              </div>
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2 bg-terracotta px-6 py-3 font-semibold text-white transition-colors hover:bg-terracotta-dark"
+        <Reveal>
+          <p className="mb-8 max-w-2xl text-lg text-ink-soft">
+            Open to MIS, data analyst, and reporting roles. Reach out directly —
+            email works best.
+          </p>
+        </Reveal>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              icon: Mail,
+              label: LINKS.email,
+              href: `mailto:${LINKS.email}`,
+            },
+            { icon: Phone, label: LINKS.phone, href: `tel:+917009898418` },
+            {
+              icon: Linkedin,
+              label: 'linkedin.com/in/krishna-mittal-88382317a',
+              href: LINKS.linkedin,
+            },
+            {
+              icon: Github,
+              label: 'github.com/krishnamittal2003',
+              href: LINKS.github,
+            },
+          ].map((c, i) => (
+            <Reveal key={c.label} delay={i * 0.07}>
+              <a
+                href={c.href}
+                target={c.href.startsWith('http') ? '_blank' : undefined}
+                rel="noreferrer"
+                className="flex h-full items-center gap-4 border border-line bg-cream-2 p-5 transition-colors hover:border-terracotta"
               >
-                Send Message <Send size={16} />
-              </button>
-            </form>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <div className="space-y-4">
-              {[
-                {
-                  icon: Mail,
-                  label: LINKS.email,
-                  href: `mailto:${LINKS.email}`,
-                },
-                { icon: Phone, label: LINKS.phone, href: `tel:+917009898418` },
-                {
-                  icon: Linkedin,
-                  label: 'linkedin.com/in/krishna-mittal-88382317a',
-                  href: LINKS.linkedin,
-                },
-                {
-                  icon: Github,
-                  label: 'github.com/krishnamittal2003',
-                  href: LINKS.github,
-                },
-              ].map((c) => (
-                <a
-                  key={c.label}
-                  href={c.href}
-                  target={c.href.startsWith('http') ? '_blank' : undefined}
-                  rel="noreferrer"
-                  className="flex items-center gap-4 border border-line bg-cream-2 p-5 transition-colors hover:border-terracotta"
-                >
-                  <div className="bg-terracotta p-2.5 text-white">
-                    <c.icon size={20} />
-                  </div>
-                  <span className="break-all font-medium">{c.label}</span>
-                </a>
-              ))}
-              <div className="flex items-center gap-4 border border-line bg-cream-2 p-5">
-                <div className="bg-ink p-2.5 text-white">
-                  <MapPin size={20} />
+                <div className="shrink-0 bg-terracotta p-2.5 text-white">
+                  <c.icon size={20} />
                 </div>
-                <span className="font-medium">Gurugram, Haryana, India</span>
+                <span className="break-all font-medium">{c.label}</span>
+              </a>
+            </Reveal>
+          ))}
+          <Reveal delay={0.28}>
+            <div className="flex h-full items-center gap-4 border border-line bg-cream-2 p-5">
+              <div className="shrink-0 bg-ink p-2.5 text-white">
+                <MapPin size={20} />
               </div>
+              <span className="font-medium">Gurugram, Haryana, India</span>
             </div>
           </Reveal>
         </div>
@@ -645,9 +624,12 @@ function Footer() {
   return (
     <footer className="border-t border-line bg-cream-2 py-8">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 sm:flex-row">
-        <p className="text-sm text-ink-soft">
-          © {new Date().getFullYear()} Krishna Mittal. All rights reserved.
-        </p>
+        <div className="flex items-center gap-3">
+          <Logo size={30} />
+          <p className="text-sm text-ink-soft">
+            © {new Date().getFullYear()} Krishna Mittal. All rights reserved.
+          </p>
+        </div>
         <div className="flex gap-5">
           <a
             href={LINKS.linkedin}
